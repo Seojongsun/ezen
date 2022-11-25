@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
 <Resource
-name="jdbc"
+name="jdbc/WebServer_Study"
 auth="Container"
 type="javax.sql.DataSource"
 factory="org.apache.commons.dbcp2.BasicDataSourceFactory"
