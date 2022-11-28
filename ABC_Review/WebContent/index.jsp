@@ -19,7 +19,7 @@
 <body>
 
 메인페이지
-ㅁㄴㅇㅁㄴㅇ
+asdasdasdasdsadasdsa
 
 <button type="button" onclick="location.href='./LoginView.me'" class="btn btn-primary">로그인</button>
 <button type="button" onclick="location.href='./MemberInsert.me'" class="btn btn-secondary">회원가입</button>
