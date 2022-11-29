@@ -21,14 +21,42 @@
 <form action="./MemberInsert_view.me">
 
 회원 가입 화면
-<input type="text" name="id">
-<input type="text" name="name">
-<input type="text" name="password">
-<input type="text" name="gender">
-<input type="text" name="birthday">
-<input type="text" name="email">
+<div>
+아이디<input type="text" name="id">		
+</div>
 
-<input type="submit"> 
+<div>
+이름<input type="text" name="name">	
+</div>
+
+<div>
+패스워드 <input type="password" name="password">	
+</div>
+
+<div>성별
+남자 <input type="radio" name="gender" value="남자">
+여자 <input type="radio" name="gender" value="여자">
+</div>
+
+<div>
+나이<input type="number" name="age">
+</div>
+
+<div>
+생년원일 <input type="date" name="birthday">
+</div>
+
+<div>
+이메일 주소 <input type="text" name="email">
+</div>
+
+<div>
+<input type="hidden" name="num">
+</div>
+
+
+<input type="submit" value="회원가입">
+<input type="reset" onClick="location.href='./index.jsp'" value="취소">  
 </form>
 </body>
 </html>

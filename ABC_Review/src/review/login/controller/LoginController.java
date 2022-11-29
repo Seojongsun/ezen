@@ -1,0 +1,60 @@
+package review.login.controller;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import review.control.Controller;
+import review.handler.HandlerAdapter;
+import review.member.dao.MemberDAO;
+import review.member.dto.MemberDTO;
+
+public class LoginController implements Controller{
+	
+
+private static Log log = LogFactory.getLog(LoginController.class);
+
+	@Override
+	public HandlerAdapter execute(HttpServletRequest request, HttpServletResponse response) {
+		String id = request.getParameter("id");
+		String password = request.getParameter("password");
+		String save = request.getParameter("save");
+		log.info(save);
+		
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setId(id);
+		memberDTO.setPassword(password);
+		log.info(memberDTO);
+		
+		MemberDAO memberDAO = new MemberDAO();
+		memberDTO = memberDAO.memberLogin(memberDTO);
+		log.info("로그인 내용 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ " + memberDTO);
+		
+		request.setAttribute("name", memberDTO.getName());
+		request.setAttribute("memberDTO", memberDTO);
+		
+		if (!memberDTO.getId().equals("") & !memberDTO.getPassword().equals("")) {
+			HttpSession httpSession = request.getSession();
+			httpSession.setAttribute("id", memberDTO.getId());
+			httpSession.setAttribute("name", memberDTO.getName());
+			Cookie cookie = new Cookie("id", memberDTO.getId());
+			cookie.setMaxAge(60 * 60* 24);
+			cookie.setPath("/");
+			response.addCookie(cookie);
+			
+		}
+		
+		HandlerAdapter handlerAdapter = new HandlerAdapter();
+		handlerAdapter.setPath("./view/login/login_check.jsp");
+		return handlerAdapter;
+		
+		
+		
+	}
+	
+
+}

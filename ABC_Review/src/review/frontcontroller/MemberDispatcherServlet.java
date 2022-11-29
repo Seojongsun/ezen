@@ -11,10 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import review.login.controller.LogoutController;
 import review.member.controller.MemberInsertController;
 import review.member.controller.MemberSelectController;
 import review.control.Controller;
 import review.handler.HandlerAdapter;
+import review.login.controller.LoginController;
 
 public class MemberDispatcherServlet extends HttpServlet {
 private static Log log = LogFactory.getLog(MemberDispatcherServlet.class);
@@ -47,8 +49,24 @@ private static Log log = LogFactory.getLog(MemberDispatcherServlet.class);
 		
 	} else if (pathURI.equals("/LoginView.me")) {
 		handlerAdapter = new HandlerAdapter();
-		handlerAdapter.setPath("./view/login/Login.jsp");
+		handlerAdapter.setPath("./view/login/login.jsp");
 		log.info("로그인 화면 뷰 확인 - " + handlerAdapter);
+		
+	} else if (pathURI.equals("/Login.me")) {
+		controller = new LoginController();
+		handlerAdapter = controller.execute(request, response);
+		log.info("로그인 확인 ㅡㅡㅡ " + handlerAdapter);
+		
+		
+	} else if(pathURI.equals("/Logout.me")) {
+		controller = new LogoutController( );
+		handlerAdapter = controller.execute(request, response);
+		log.info("로그아웃 확인 - " + handlerAdapter);
+		
+	
+		
+
+	
 		
 	}else if(pathURI.equals("/MemberInsert.me")) {
 			handlerAdapter = new HandlerAdapter();
@@ -59,6 +77,8 @@ private static Log log = LogFactory.getLog(MemberDispatcherServlet.class);
 		controller = new MemberInsertController( );
 		handlerAdapter = controller.execute(request, response);
 		log.info("회원 가입 확인 - " + handlerAdapter);
+	
+		
 	}
 	
 	if (handlerAdapter != null) {

@@ -122,7 +122,62 @@ private static Log log = LogFactory.getLog(MemberDAO.class);
 
 	@Override
 	public MemberDTO memberLogin(MemberDTO memberDTO) {
-		return null;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		Context context;
+		try {
+			context = new InitialContext();
+		
+		DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc/review");
+		connection = dataSource.getConnection();
+		String sql = "select * from member ";
+		sql += " where id = ? ";
+		
+		log.info("sql 확이니닌이니인이니 " + sql);
+		
+		preparedStatement = connection.prepareStatement(sql);
+		preparedStatement.setString(1, memberDTO.getId());
+		
+		resultSet = preparedStatement.executeQuery();
+		
+		if (resultSet.next()) {
+			
+			memberDTO.setName(resultSet.getString("name"));
+			memberDTO.setId(resultSet.getString("id"));
+			log.info("아이디  asdsad = " + resultSet.getString("id"));
+			if (resultSet.getString("password").equals(memberDTO.getPassword())) {
+				memberDTO.setPassword(resultSet.getString("password"));
+				log.info("비밀번호 확인 - ㅡㅡㅡㅡㅡㅡㅡㅡ " + resultSet.getString("password"));
+				
+				
+			} else {
+				memberDTO.setPassword("");
+			}
+			
+		}	else {
+			memberDTO.setId("");
+			
+		}
+		
+		
+		} catch (NamingException e) {
+			log.info("로그인 실패 ㅡㅡㅡㅡㅡㅡ" + e);
+		} catch (SQLException e) {
+		} finally {
+			
+			try {
+				resultSet.close();
+			preparedStatement.close();
+			connection.close();
+			
+			} catch (SQLException e) {
+log.info("자원 해제 실패 " + e);
+			}
+		}
+		
+		return memberDTO;
 	}
 
 	@Override

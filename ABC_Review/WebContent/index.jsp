@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,13 +19,46 @@
 </head>
 <body>
 
-메인페이지
-asdasdasdasdsadasdsa
 
-<button type="button" onclick="location.href='./LoginView.me'" class="btn btn-primary">로그인</button>
-<button type="button" onclick="location.href='./MemberInsert.me'" class="btn btn-secondary">회원가입</button>
+
+메인페이지
+
+<div>
+
+세션에 저장된 아이디 :  ${sessionScope.name} 님
+</div>
+
+<div>
+<p>
+<c:choose>
+ <c:when test="${!empty sessionScope.id}">
+   <button type="button" onclick="location.href='./LoginView.me'" class="btn btn-primary">로그아웃</button>
+ </c:when>
+ <c:otherwise>
+  <button type="button" onclick="location.href='./LoginView.me'" class="btn btn-primary">로그인</button>
+ </c:otherwise>
+</c:choose>
+</p>
+</div>
+
+<div>
+<p>
+<c:choose>
+ <c:when test="${!empty sessionScope.id}">
+   <button type="button" onclick="location.href='./view/mypage/mypage.jsp'" class="btn btn-secondary">마이페이지</button>
+ </c:when>
+ <c:otherwise>
+  <button type="button" onclick="location.href='./MemberInsert.me'" class="btn btn-secondary">회원가입</button>
+ </c:otherwise>
+</c:choose>
+</p>
+</div>
+
+	
+
 <button type="button" onclick="location.href='./view/cart/CartPageView.jsp'" class="btn btn-success">장바구니</button>
 <button type="button" onclick="location.href='./view/event/EventPageView.jsp'" class="btn btn-danger">기획전</button>
+
 
 
 
