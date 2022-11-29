@@ -21,11 +21,12 @@ public class LoginController implements Controller {
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		String save = request.getParameter("save");
-		log.info(save);
+		log.info("세이브 ㅡㅡㅡㅡㅡㅡㅡ" +save);
+		
 		MemberDTO memberDTO = new MemberDTO( );
 		memberDTO.setId(id);
 		memberDTO.setPassword(password);
-		log.info(memberDTO);
+		log.info("memberDTO ㅡㅡㅡㅡㅡㅡ" + memberDTO);
 
 		MemberDAO memberDAO = new MemberDAO( );
 		memberDTO = memberDAO.memberLogin(memberDTO);
@@ -40,6 +41,7 @@ public class LoginController implements Controller {
 			cookie.setMaxAge(60 * 60 * 24);
 			cookie.setPath("/");
 			response.addCookie(cookie);
+			log.info("쿠키 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ" + cookie);
 		}
 
 		HandlerAdapter handlerAdapter = new HandlerAdapter( );

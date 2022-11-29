@@ -23,7 +23,7 @@
 
 <div>
 <p>
-구매 내역 있다 치고~~~ <button type="button" onclick="location.href=' 고쳐보자 '" class="btn btn-outline-dark"> 후기 작성</button>
+구매 내역 있다 치고~~~~~ <button type="button" onclick="location.href=' 고쳐보자 '" class="btn btn-outline-dark"> 후기 작성</button>
 
 </p>
 </div>
