@@ -40,10 +40,8 @@ private static Log log = LogFactory.getLog(MemberDAO.class);
 		
 		
 		} catch (NamingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -99,43 +97,36 @@ private static Log log = LogFactory.getLog(MemberDAO.class);
 
 	@Override
 	public MemberDTO memberUpdate(MemberDTO memberDTO) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public MemberDTO memberDelete(MemberDTO memberDTO) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public MemberDTO memberSelect(MemberDTO memberDTO) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public ArrayList<MemberDTO> memberSearch(String keyword, int page, int limit) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public int memberSearchCount(String keyword) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public MemberDTO memberLogin(MemberDTO memberDTO) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public int memberId(String id) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	
@@ -202,13 +193,11 @@ private static Log log = LogFactory.getLog(MemberDAO.class);
 
 	@Override
 	public MemberDTO memberSearchId(String name, String email) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public MemberDTO memberSearchPassword(String id, String email) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
