@@ -8,7 +8,8 @@
 <body>
 <script type="text/javascript">
 alert("로그아웃 되었습니다.")
-location.href="./LoginView.me"
+<% session.invalidate();  %>
+location.href="./index.jsp"
 </script>
 </body>
 </html>

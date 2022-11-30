@@ -85,3 +85,17 @@ id varchar2(30)
 <button type="button" class="btn btn-dark">Dark</button>
 <button type="button" class="btn btn-link">Link</button>
 
+
+
+----- 세션 아이디 없을 때 이동 경로
+
+<c:if test="${empty sessionScope.id}">
+<script type="text/javascript">
+location.href="./경로라잇댓"
+</script>
+</c:if>
+
+---- 세션 지우기
+
+<% session.invalidate();  %>
+

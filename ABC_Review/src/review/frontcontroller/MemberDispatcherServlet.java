@@ -49,7 +49,7 @@ private static Log log = LogFactory.getLog(MemberDispatcherServlet.class);
 		
 	} else if (pathURI.equals("/LoginView.me")) {
 		handlerAdapter = new HandlerAdapter();
-		handlerAdapter.setPath("./view/login/login.jsp");
+		handlerAdapter.setPath("./WEB-INF/view/login/login.jsp");
 		log.info("로그인 화면 뷰 확인 - " + handlerAdapter);
 		
 	} else if (pathURI.equals("/Login.me")) {
@@ -63,29 +63,42 @@ private static Log log = LogFactory.getLog(MemberDispatcherServlet.class);
 		handlerAdapter = controller.execute(request, response);
 		log.info("로그아웃 확인 - " + handlerAdapter);
 		
-	
-		
-
-	
-		
 	}else if(pathURI.equals("/MemberInsert.me")) {
 			handlerAdapter = new HandlerAdapter();
-			handlerAdapter.setPath("./view/member/member_insert.jsp");
+			handlerAdapter.setPath("./WEB-INF/view/member/member_insert.jsp");
 			log.info("회원 가입 확인 - " + handlerAdapter);
 		
 	} else if(pathURI.equals("/MemberInsert_view.me")) {
 		controller = new MemberInsertController( );
 		handlerAdapter = controller.execute(request, response);
 		log.info("회원 가입 확인 - " + handlerAdapter);
+		
+	} else if (pathURI.equals("/Cart.me")) {
+		handlerAdapter = new HandlerAdapter();
+		handlerAdapter.setPath("./WEB-INF/view/cart/cart.jsp");
+		log.info("장바구니 페이지 화면 - " + handlerAdapter);
+		
+	} else if (pathURI.equals("/Event.me")) {
+		handlerAdapter = new HandlerAdapter();
+		handlerAdapter.setPath("./WEB-INF/view/event/event.jsp");
+		log.info("이벤트 페이지 화면 - " + handlerAdapter);
+		
+	} else if (pathURI.equals("/ServiceCenter.me")) {
+		handlerAdapter = new HandlerAdapter();
+		handlerAdapter.setPath("./WEB-INF/view/service-center/service_center.jsp");
+		log.info("고객센터 페이지 화면 - " + handlerAdapter);
+		
 	
 		
 	}
 	
 	if (handlerAdapter != null) {
 		if (handlerAdapter.isRedirect()) {
+			log.info("여기서 무슨 값이 나옵니까? 1 " + handlerAdapter);
 			response.sendRedirect(handlerAdapter.getPath());
 		} else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(handlerAdapter.getPath());
+			log.info("여기서 무슨 값이 나옵니까? 2 " + request);
 			dispatcher.forward(request, response);
 			
 		}

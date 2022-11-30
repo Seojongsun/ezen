@@ -49,7 +49,9 @@ private static Log log = LogFactory.getLog(LoginController.class);
 		}
 		
 		HandlerAdapter handlerAdapter = new HandlerAdapter();
-		handlerAdapter.setPath("./view/login/login_check.jsp");
+		handlerAdapter.setPath("./WEB-INF/view/login/login_check.jsp");
+		
+		
 		return handlerAdapter;
 		
 		
