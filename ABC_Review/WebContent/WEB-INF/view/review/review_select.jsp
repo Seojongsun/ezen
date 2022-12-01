@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${empty sessionScope.id}">
+ <script type="text/javascript">
+		location.href = "./LoginView.me"
+	</script>
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,33 +23,12 @@
 </head>
 <body>
 
-<div>
 
-<button type="button" onclick="location.href='./index.jsp'" class="btn btn-primary">홈</button>
+리뷰 전체 조회 페이지
 
-</div>
-<div>
-${sessionScope.name} 님 환합니다
-</div>
+${reviewList}
+ <strong>${listcount}</strong>개
 
-주문 / 배송 현황 조회
-
-
-<div>
-<p>
-구매 내역 있다 치고~~~~~ <button type="button" onclick="location.href='./ReviewInsert.do'" class="btn btn-outline-dark"> 후기 작성</button>
-
-</p>
-</div>
-
-
-<div>
-
-<p>
-구매 내역 있고 그 상품에 대한 후기를 작성 했다 치고~~~ <button type="button" onclick="location.href='./Myreview.do'" class="btn btn-dark"> 작성 후기보기</button>
-
-</p>
-</div>
-
+  
 </body>
 </html>

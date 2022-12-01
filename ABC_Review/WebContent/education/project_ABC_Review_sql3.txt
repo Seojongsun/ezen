@@ -1,0 +1,32 @@
+리뷰 번호 reviewNumber
+구매한 상품 주문번호 orderNumber
+아이디 id
+리뷰 작성일시 reviewDate
+
+전체적인 만족도 rating
+사이즈 만족도 sizeReview
+색상 만족도 colorReview
+발볼 만족도 footballReview
+발등 만족도 instepReview
+리뷰 내용 reviewContent
+포토 / 동영상후기 파일 reviewFile
+
+
+
+
+-- 리뷰 테이블 생성
+create table review (
+
+reviewNumber number primary key,
+orderNumber number,
+id varchar2(30),
+reviewDate date default sysdate,
+ratings varchar2(30),
+sizeReview varchar2(30),
+colorReview varchar2(30),
+footballReview varchar2(30),
+instepReview varchar2(30),
+reviewFile BLOB(30)
+);
+
+alter review 

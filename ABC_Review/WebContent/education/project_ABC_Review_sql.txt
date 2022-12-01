@@ -1,0 +1,127 @@
+-- sys 최고 관리자 계정에서 계정과 권한 생성
+create user review identified by 1234;
+grant connect, resource to review;
+grant create view to review;
+
+
+-- 회원 테이블 생성
+create table member (
+
+name varchar2(30),
+birthday date,
+id varchar2(30) primary key,
+password varchar2(30),
+email varchar2(60),
+phonenumber number,
+joinday date default sysdate,
+num number
+);
+
+-- 컬럼 추가
+alter table 테이블명 add 컬럼명 데이터타입(길이);
+
+-- 컬럼 삭제
+alter table 테이블명 drop column 컬럼명;
+
+
+-- 컬럼 데이터 타입, 길이 변경
+alter table 테이블명 modify 컬럼명 데이터타입(길이);
+
+-- 컬럼 명 변경
+alter table 테이블명 rename column 이전컬럼명 to 새로운컬럼명;
+
+
+insert into member(name, birthday, id, password, email, phonenumber, joinday, num)
+values('서종선', to_date(19910830, 'yyyy-mm-dd'), 'sjs5823', '1234', 'sjs5823@naver.com', 01058275823, to_date(sysdate, 'YYYY/MM/DD'), 0);
+commit;
+
+
+
+
+
+-- 밑으로 아직 미구현
+
+
+
+
+
+
+-- 회원 테이블 생성
+create table member (
+id varchar2(30) primary key,
+name varchar2(30),
+password varchar2(30),
+gender varchar2(9),
+age number(3),
+birthday date,
+email varchar2(60),
+num number,
+joinday date default sysdate
+);
+
+insert into member(id, name, password, gender, age, birthday, email, num)
+values('admin', '홍길동', '1234', '남', 33, to_date(20210118, 'yyyy-mm-dd'), 'min@naver.com', 0);
+commit;
+
+
+
+--  테이블 생성 
+create table board(
+num number primary key,
+name varchar2(30),
+password varchar2(30),
+subject varchar2(300),
+content varchar2(4000),
+attachedfile varchar2(100),
+answernum number,
+answerlev number,
+answerseq number,
+readcount number,
+writeday date default sysdate,
+id varchar2(30)
+);
+
+
+
+
+
+
+---- 부트스트랩 버튼
+<button type="button" class="btn btn-primary">Primary</button>
+<button type="button" class="btn btn-secondary">Secondary</button>
+<button type="button" class="btn btn-success">Success</button>
+<button type="button" class="btn btn-danger">Danger</button>
+<button type="button" class="btn btn-warning">Warning</button>
+<button type="button" class="btn btn-info">Info</button>
+<button type="button" class="btn btn-light">Light</button>
+<button type="button" class="btn btn-dark">Dark</button>
+<button type="button" class="btn btn-link">Link</button>
+
+
+
+----- 세션 아이디 없을 때 이동 경로
+
+<c:if test="${empty sessionScope.id}">
+<script type="text/javascript">
+location.href="./경로라잇댓"
+</script>
+</c:if>
+
+---- 세션 지우기
+
+<% session.invalidate();  %>
+
+----
+
+ReviewSelect.do
+ReviewSelectDetail.do
+
+ReviewInsert.do
+ReviewInsertView.do
+
+ReviewUpdate.do
+ReviewUpdateView.do
+
+ReviewDelete.do
+ReviewDeleteView.do
+

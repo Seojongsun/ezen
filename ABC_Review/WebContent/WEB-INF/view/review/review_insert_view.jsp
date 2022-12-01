@@ -19,5 +19,7 @@
 </head>
 <body>
 
+리뷰 작성 결과 페이지
+
 </body>
 </html>

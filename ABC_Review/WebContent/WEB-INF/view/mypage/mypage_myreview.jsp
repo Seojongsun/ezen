@@ -29,6 +29,29 @@ ${sessionScope.name} 님 환합니다
 
 나의 상품 후기
 
+<p>
+밑으로 상품 후기 좌르르르르르르륵~
+</p>
+
+
+<!-- 임시로 빼놓음  -->
+<div><br><br><br><br><br><br>
+<button type="button" onclick="location.href='./ReviewSelect.do'" class="btn btn-primary">리뷰 전체 조회</button>
+<button type="button" onclick="location.href='./ReviewSelectDetail.do'" class="btn btn-secondary">리뷰 상세 조회</button>
+</div>
+<div><br>
+<button type="button" onclick="location.href='./ReviewInsert.do'" class="btn btn-success">리뷰 작성</button>
+<button type="button" onclick="location.href='./ReviewInsertView.do'" class="btn btn-outline-danger">리뷰 작성 결과</button>
+</div>
+<div><br>
+<button type="button" onclick="location.href='./ReviewUpdate.do'" class="btn btn-warning">리뷰 수정</button>
+<button type="button" onclick="location.href='./ReviewUpdateView.do'" class="btn btn-info">리뷰 수정 결과</button>
+</div>
+<div><br>
+<button type="button" onclick="location.href='./ReviewDelete.do'" class="btn btn-light">리뷰 삭제</button>
+<button type="button" onclick="location.href='./ReviewDeleteView.do'" class="btn btn-outline-dark">리뷰 삭제 결과</button>
+</div>
+
 
 </body>
 </html>
