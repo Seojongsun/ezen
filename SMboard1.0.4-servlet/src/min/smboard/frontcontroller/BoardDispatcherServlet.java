@@ -51,14 +51,19 @@ public class BoardDispatcherServlet extends HttpServlet implements Servlet {
 			controller = new BoardSelectController( );
 			handlerAdapter = controller.execute(request, response);
 			log.info("글 전체 조회 확인 - " + handlerAdapter);
+			
+			
 		} else if(pathURL.equals("/BoardInsertView.do")) {
 			handlerAdapter = new HandlerAdapter( );
 			handlerAdapter.setPath("/WEB-INF/view/board/board_insert_view.jsp");
 			log.info("글 등록 화면 뷰 확인 - " + handlerAdapter);
+			
 		} else if(pathURL.equals("/BoardInsert.do")) {
 			controller = new BoardInsertController( );
 			handlerAdapter = controller.execute(request, response);
 			log.info("글 등록 확인 - " + handlerAdapter);
+			
+			
 		} else if(pathURL.equals("/BoardUpdate.do")) {
 			controller = new BoardUpdateController( );
 			handlerAdapter = controller.execute(request, response);
