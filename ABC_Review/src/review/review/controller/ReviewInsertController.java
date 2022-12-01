@@ -46,6 +46,8 @@ private static Log log = LogFactory.getLog(ReviewInsertController.class);
 //			reviewDTO.setColorReview(multipartRequest.getParameter("colorReview"));
 //			reviewDTO.setColorReview(multipartRequest.getParameter("footballReview"));
 //			reviewDTO.setInstepReview(multipartRequest.getParameter("instepReview"));
+			
+			 여기부터 ㄲㅁㄴㅇ
 			reviewDTO.setReviewNumber(multipartRequest.getParameter("reviewNumber"));
 			reviewDTO.setReviewContent(multipartRequest.getParameter("reviewContent"));
 			log.info("여기 찍어보자 ㅡㅡㅡㅡㅡㅡㅡ " + multipartRequest);
