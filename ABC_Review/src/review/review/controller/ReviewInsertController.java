@@ -1,6 +1,5 @@
 package review.review.controller;
 
-import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,11 +46,13 @@ private static Log log = LogFactory.getLog(ReviewInsertController.class);
 //			reviewDTO.setColorReview(multipartRequest.getParameter("footballReview"));
 //			reviewDTO.setInstepReview(multipartRequest.getParameter("instepReview"));
 			
-			 여기부터 ㄲㅁㄴㅇㅁㄴㅇ
-			reviewDTO.setReviewNumber(multipartRequest.getParameter("reviewNumber"));
+			
+//			reviewDTO.setReviewNumber(multipartRequest.getParameter("reviewNumber"));
 			reviewDTO.setReviewContent(multipartRequest.getParameter("reviewContent"));
+			
+//			reviewDTO.setReviewFile(multipartRequest.getFilesystemName((String) multipartRequest.getFileNames( ).nextElement( )));
+			
 			log.info("여기 찍어보자 ㅡㅡㅡㅡㅡㅡㅡ " + multipartRequest);
-//			reviewDTO.setReviewDate(multipartRequest.getFilesystemName((String) multipartRequest.getFileNames( ).nextElement( )));
 			
 			result = reviewDAO.reviewInsert(reviewDTO);
 			
@@ -61,7 +62,10 @@ private static Log log = LogFactory.getLog(ReviewInsertController.class);
 			log.info("게시글 등록 ㅡㅡㅡㅡㅡㅡㅡ " + result);
 			
 			handlerAdapter.setRedirect(true);
-			handlerAdapter.setPath("./index.jsp");
+			handlerAdapter.setPath("./ReviewInsert.do");
+			
+//			handlerAdapter.setPath("./ReviewInsertView.do");
+//			로 했을 때  Posted content type isn't multipart/form-data 오류 발생
 		return handlerAdapter;
 		} catch (Exception e) {
 			e.printStackTrace();

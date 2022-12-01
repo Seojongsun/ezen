@@ -2,7 +2,6 @@
 구매한 상품 주문번호 orderNumber
 아이디 id
 리뷰 작성일시 reviewDate
-
 전체적인 만족도 rating
 사이즈 만족도 sizeReview
 색상 만족도 colorReview
@@ -26,7 +25,8 @@ sizeReview varchar2(30),
 colorReview varchar2(30),
 footballReview varchar2(30),
 instepReview varchar2(30),
-reviewFile BLOB(30)
+reviewContent varchar2(2000),
+reviewFile BLOB
 );
 
 alter review 

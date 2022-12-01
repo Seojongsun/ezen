@@ -55,7 +55,7 @@ private static Log log = LogFactory.getLog(ReviewDAO.class);
 //				reviewDTO.setOrderNumber(resultSet.getInt("orderNumber"));
 //				reviewDTO.setUserId(resultSet.getString("id"));
 //				reviewDTO.setReviewDate(resultSet.getString("reviewDate"));
-//				reviewDTO.setRatings(resultSet.getInt("ratings"));
+//				reviewDTO.setRating(resultSet.getString("rating"));
 //				reviewDTO.setColorReview(resultSet.getString("sizeReview"));
 //				reviewDTO.setColorReview(resultSet.getString("colorReview"));
 //				reviewDTO.setColorReview(resultSet.getString("footballReview"));
@@ -104,44 +104,35 @@ private static Log log = LogFactory.getLog(ReviewDAO.class);
 			connection = dataSource.getConnection( );
 			
 			
+			sql = "select max(reviewNumber) from review ";
+			log.info("SQL 확인 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ " + sql);
+			
 			preparedStatement = connection.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				reviewNumber = resultSet.getInt(1) + 1;
+				
+			} else {
+				reviewNumber = 1;
+			} 
+			
+			preparedStatement.close( );
 			
 			sql = " INSERT INTO review( reviewnumber, reviewcontent )  ";
-			sql += "  VALUES ( 2, ? ) " ;
-			
+			sql += "  VALUES ( ?, ? ) " ;
+			log.info("SQL 확인 - " + sql);
 			
 
-//			sql = "select max(reviewNum) from review";
-//			log.info("SQL 확인 - " + sql);
+			
+			
+			
 			
 			preparedStatement = connection.prepareStatement(sql);
-			resultSet = preparedStatement.executeQuery( );
-//			if(resultSet.next( )) {
-//				reviewNumber = resultSet.getInt(1) + 1;
-//
-//			} else {
-//				reviewNumber = 1;
-//			}
-			// 사전 컴파일된 SQL 문을 실행하고 생성된 결과를 반환하는 데 사용된 객체에 대한 자원 해제를 한다.
-//			preparedStatement.close( );
-//			sql = "insert into board (num, name, password, subject, content, attachedfile,";
-//			sql += "answernum, answerlev, answerseq, readcount, writeday, id)";
-//			sql += " values(?,?,?,?,?,?,?,?,?,?,sysdate,?)";
-//			preparedStatement.setInt(2, orderNumber);
-//			preparedStatement.setString(3, id);
-			
-//			sql = " insert into review reviewNumber ";
-//			sql += " values ( ? )";
-			
-//			sql = " insert into review (reviewNumber, reviewDate, "
-//					+ "rating, sizeReview, colorReview, "
-//					+ "footballReview, instepReview, reviewFile ) ";
-//			
-//			sql += " values (?, sysdate, ?, ?, ?, ?, ?, ?)";
-			
-			log.info("SQL 확인 - " + sql);
-			preparedStatement.setInt(1, reviewDTO.getReviewNumber());
+			preparedStatement.setInt(1, reviewNumber);
 			preparedStatement.setString(2, reviewDTO.getReviewContent());
+//			preparedStatement.setByte(3, reviewDTO.getReviewFile());
+			result = preparedStatement.executeUpdate();
+			
 //			preparedStatement = connection.prepareStatement(sql);
 //			
 //			preparedStatement.setInt(1, reviewNumber);
@@ -154,11 +145,13 @@ private static Log log = LogFactory.getLog(ReviewDAO.class);
 //			preparedStatement.setString(8, reviewDTO.getReviewContent());
 //			preparedStatement.setByte(9, reviewDTO.getReviewFile());
 			
-			result = preparedStatement.executeUpdate( );
-//			if(result == 0) {
-//				return false;
-//			}
-//			return true;
+			
+			
+			
+			if(result == 0) {
+				return false;
+			}
+			return true;
 		} catch(Exception e) {
 			log.info("글 등록 실패 - " + e);
 		} finally {

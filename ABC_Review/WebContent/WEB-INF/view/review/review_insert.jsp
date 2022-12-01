@@ -67,7 +67,7 @@
 				
 				<br> <br> 나의 사이즈 <input type="button" name="mySize" value="미구현"> 
 				<br> <br> 상품후기
-				<textarea name="reviewContent" id=reviewContent placeholder="최소 20자 이상 입력해 주세요." cols="80" rows="5" maxlength="1000"></textarea> 0 / 1,000 <br>
+				<textarea  name="reviewContent" id=reviewContent placeholder="최소 20자 이상 입력해 주세요." cols="80" rows="5" maxlength="1000"></textarea> 0 / 1,000 <br>
 					<!--  텍스트 입력시 입력한 바이트만큼 증가 하는 기능 구현 예정 , 최소 글자수 구현 예정 -->
 					
 				
@@ -78,7 +78,7 @@
 				 <!-- 파일 선택이란 버튼 박스 이미지 교체와 옆에 선택된 파일 없음 출력 안 되게 수정 예정 -->
 				
 						<div style=" text-align: center;">
-				<input type="submit" value="상품 후기 등록">
+				<input  type="submit" value="상품 후기 등록">
 				<input type="reset" value="취소">
 	</div>
 		</fieldset>

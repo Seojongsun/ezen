@@ -16,10 +16,21 @@
 
 </script>
 
+
 </head>
 <body>
 
-리뷰 작성 결과 페이지
+
+
+<form action="./index.jsp" method="post"
+		enctype="multipart/form-data">
+		
+		
+		${alert{'반갑습니다' }
+		
+		<input type="file">
+		
+		</form>
 
 </body>
 </html>
