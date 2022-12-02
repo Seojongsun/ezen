@@ -52,17 +52,25 @@ private static Log log = LogFactory.getLog(ReviewInsertController.class);
 			
 //			reviewDTO.setReviewFile(multipartRequest.getFilesystemName((String) multipartRequest.getFileNames( ).nextElement( )));
 			
-			log.info("여기 찍어보자 ㅡㅡㅡㅡㅡㅡㅡ " + multipartRequest);
+			log.info("여기 찍어보자 ㅡㅡㅡㅡㅡㅡㅡ " + multipartRequest.getParameter("reviewContent"));
 			
 			result = reviewDAO.reviewInsert(reviewDTO);
 			
 			System.out.println("여기까지 못 옴?");
 			
 			log.info("DTO 확인 ㅡㅡㅡㅡㅡㅡㅡ " + reviewDTO);
-			log.info("게시글 등록 ㅡㅡㅡㅡㅡㅡㅡ " + result);
+			log.info("리뷰 등록 확인  ㅡㅡㅡㅡㅡㅡㅡ " + result);
 			
+			
+			// 리다이렉트일 때 밑에 두개 가능
 			handlerAdapter.setRedirect(true);
-			handlerAdapter.setPath("./ReviewInsert.do");
+			handlerAdapter.setPath("./ReviewInsertView2.do");
+//			handlerAdapter.setPath("./index.jsp");
+			
+			// 포워드일 때 밑에 가능
+//			handlerAdapter.setRedirect(false);
+//			handlerAdapter.setPath("./WEB-INF/view/review/review_insert_view.jsp");
+
 			
 //			handlerAdapter.setPath("./ReviewInsertView.do");
 //			로 했을 때  Posted content type isn't multipart/form-data 오류 발생

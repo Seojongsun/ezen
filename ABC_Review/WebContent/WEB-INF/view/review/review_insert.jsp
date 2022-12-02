@@ -20,8 +20,7 @@
 <body>
 
 
-<form name="rating" id="raing" action="./ReviewInsertView.do" method="post"
-		enctype="multipart/form-data">
+<form name="rating" id="raing" action="./ReviewInsertView.do" method="post"	enctype="multipart/form-data">
 		<fieldset>
 			상품 후기 작성 <br>
 		</fieldset>

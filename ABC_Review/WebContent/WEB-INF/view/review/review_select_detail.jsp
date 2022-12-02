@@ -18,7 +18,30 @@
 </head>
 <body>
 
-리뷰 상세 조회 페이지
+리뷰 상세 조회
+
+
+
+<div>
+리뷰 번호
+${reviewDTO.reviewNumber} 
+</div>
+
+<div>
+리뷰 내용
+${reviewDTO.reviewContent} 
+</div>
+
+<button type="button" onclick="location.href='./ReviewSelect.do'" class="btn btn-primary">리뷰 전체 조회</button>
+
+<button type="button" onclick="location.href='./ReviewUpdate.do'" class="btn btn-warning">리뷰 수정</button>
+<button type="button" onclick="location.href='./ReviewDelete.do'" class="btn btn-light">리뷰 삭제</button>
+ 
+ 
+   
+
+
+
 
 </body>
 </html>

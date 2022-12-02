@@ -21,5 +21,23 @@
 
 삭제 화면
 
+
+<c:choose>
+ <c:when test="${sessionScope.id == 'admin'}">
+  <script type="text/javascript">
+  confirm("게시글을 삭제하시겠습니까?.")
+    location.href="./ReviewDeleteView.do?reviewNumber=${param.reviewNumber}&id=admin"
+  </script>
+ </c:when>
+ <c:otherwise>
+  <script type="text/javascript">
+  confirm("게시글을 삭제하시겠습니까?.")
+   location.href="./ReviewDeleteView.do?reviewNumber=${param.reviewNumber}&id=${sessionScope.id}"
+  </script>
+ </c:otherwise>
+</c:choose>
+
+
+
 </body>
 </html>

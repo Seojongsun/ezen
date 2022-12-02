@@ -10,9 +10,12 @@
 <title> 제목 </title>
 
 
+
+<script src="./js/jquery-3.5.1.min.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="./css/bootstrap.min_4.5.0.css">
 <script src="./js/jquery-3.5.1.min.js" type="text/javascript"></script>
 <script src="./js/bootstrap.min_4.5.0.js" type="text/javascript"></script>
+
 <script src="./js/jquery.validate.min.js" type="text/javascript"></script>
 <script src="./js/validity.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -24,7 +27,7 @@
 
 
 
-메인페이지 ㄴㅁㅇ
+메인페이지
 
 <div>
 
@@ -64,6 +67,8 @@
 <button type="button" onclick="location.href='./Event.me'" class="btn btn-danger">기획전</button>
 <button type="button" onclick="location.href='./ServiceCenter.me'" class="btn btn-outline-dark">고객센터</button>
 </div>
+
+
 
 
 

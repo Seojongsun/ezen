@@ -12,19 +12,23 @@ public interface ReviewService {
 	
 	public boolean reviewUpdate(ReviewDTO reviewDTO);
 	
-	public boolean reviewDelete(int reviewNum);
+	public boolean reviewDelete(int reviewNumer);
 	
-	public ReviewDTO reviewSelectDetail (int reviewNum);
+	public ReviewDTO reviewSelectDetail (int reviewNumber);
 	
 	public int reviewCount();
 	
-	public int boardReply (ReviewDTO reviewDTO);
+	public void reviewHitNumber(int reviewNumber);
 	
-	public boolean reviewId (int reviewNum, String id);
+	public int reviewReply (ReviewDTO reviewDTO);
+	
+	public boolean reviewId (int reviewNumber, String id);
 	
 	public List<?> reviewSearch(String keyword, String keyfield, int page, int limit);
 	
 	public int reviewSearchCount (String keyword, String keyfield);
+	
+	
 	
 	
 	

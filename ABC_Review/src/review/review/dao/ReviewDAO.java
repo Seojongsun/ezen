@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import org.apache.commons.logging.Log;
@@ -51,7 +52,8 @@ private static Log log = LogFactory.getLog(ReviewDAO.class);
 			
 			while(resultSet.next( )) {
 				ReviewDTO reviewDTO = new ReviewDTO( );
-//				reviewDTO.setReviewNumber(resultSet.getInt("reviewNumber"));
+				reviewDTO.setReviewNumber(resultSet.getInt("reviewNumber"));
+				reviewDTO.setReviewContent(resultSet.getString("reviewContent"));
 //				reviewDTO.setOrderNumber(resultSet.getInt("orderNumber"));
 //				reviewDTO.setUserId(resultSet.getString("id"));
 //				reviewDTO.setReviewDate(resultSet.getString("reviewDate"));
@@ -172,12 +174,98 @@ private static Log log = LogFactory.getLog(ReviewDAO.class);
 	}
 
 	@Override
-	public boolean reviewDelete(int reviewNum) {
+	public boolean reviewDelete(int reviewNumber) {
+		
+		int result = 0;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		try {
+			Context context = new InitialContext( );
+			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc/review");
+			connection = dataSource.getConnection( );
+			String sql = " delete from review where reviewNumber = ? ";
+			log.info("SQL 확인 - " + sql);
+			
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, reviewNumber);
+			result = preparedStatement.executeUpdate( );
+
+			if(result == 0) {
+				return false;
+
+			}
+		} catch(Exception e) {
+			log.info("글 삭제 실패 - " + e);
+		} finally {
+			try {
+				preparedStatement.close( );
+				connection.close( );
+			} catch(SQLException e2) {
+				e2.printStackTrace( );
+			}
+		}
+
 		return false;
 	}
 
 	@Override
-	public ReviewDTO reviewSelectDetail(int reviewNum) {
+	public ReviewDTO reviewSelectDetail(int reviewNumber) {
+		
+		ReviewDTO reviewDTO = null;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		Context context;
+		try {
+			context = new InitialContext( );
+	
+		DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc/review");
+		connection = dataSource.getConnection( );
+		
+		String sql = " select reviewNumber, reviewContent from review";
+		sql += " where reviewNumber = ? ";
+		
+		log.info("SQL 확인 ㅡㅡㅡ " + sql);
+		
+		preparedStatement = connection.prepareStatement(sql);
+		preparedStatement.setInt(1, reviewNumber);
+		resultSet = preparedStatement.executeQuery( );
+		
+		if(resultSet.next( )) {
+			reviewDTO = new ReviewDTO( );
+			reviewDTO.setReviewNumber(resultSet.getInt("reviewNumber"));
+			reviewDTO.setReviewContent(resultSet.getString("reviewContent"));
+//			boardDTO.setName(resultSet.getString("name"));
+//			boardDTO.setSubject(resultSet.getString("subject"));
+//			boardDTO.setContent(resultSet.getString("content"));
+//			boardDTO.setAttachedfile(resultSet.getString("attachedfile"));
+//			boardDTO.setAnswernum(resultSet.getInt("answernum"));
+//			boardDTO.setAnswerlev(resultSet.getInt("answerlev"));
+//			boardDTO.setAnswerseq(resultSet.getInt("answerseq"));
+//			boardDTO.setReadcount(resultSet.getInt("readcount"));
+//			boardDTO.setWriteday(resultSet.getString("writeday"));
+//			boardDTO.setId(resultSet.getString("id"));
+		}
+		return reviewDTO;
+		
+		
+		} catch (NamingException e) {
+			log.info("글 내용 보기 실패 - " + e);
+		} catch (SQLException e) {
+			log.info("글 내용 보기 실패2 - " + e);
+		} finally {
+			
+		
+		try {
+			resultSet.close( );
+		preparedStatement.close( );
+		connection.close( );
+		
+		} catch (SQLException e) {
+			log.info("글 내용 보기 실패 3 - " + e);
+		}
+		}
 		return null;
 	}
 
@@ -213,9 +301,14 @@ private static Log log = LogFactory.getLog(ReviewDAO.class);
 		}
 		return i;
 	}
+	
+	@Override
+	public void reviewHitNumber(int reviewNumber) {
+		return;
+	}
 
 	@Override
-	public int boardReply(ReviewDTO reviewDTO) {
+	public int reviewReply(ReviewDTO reviewDTO) {
 		return 0;
 	}
 
@@ -233,6 +326,8 @@ private static Log log = LogFactory.getLog(ReviewDAO.class);
 	public int reviewSearchCount(String keyword, String keyfield) {
 		return 0;
 	}
+
+	
 
 
 	

@@ -23,11 +23,50 @@
 </head>
 <body>
 
-
-리뷰 전체 조회 페이지
-
 ${reviewList}
  <strong>${listcount}</strong>개
+ 
+ 
+ <section id="review">
+ <div class="card">
+ 글목록
+   <p align="right">
+        <%--전체 글의 개수를 호출한다.--%>
+        전체 글:
+        <strong>${listcount}</strong>
+        개
+  </p>
+  
+  
+   <table class="table table-hover">
+  <thead class="thead-light">
+   <tr class="text-center">
+           <th>리뷰 번호</th>
+           <th>리뷰 내용</th>
+          </tr>
+  </thead>
+  <c:forEach var="review" items="${reviewList}">
+   <tbody>
+           <tr class="text-center">
+            <td>${review.reviewNumber}</td>
+            <a href="./ReviewSelectDetail.do?reviewNumber=${review.reviewNumber}">${review.reviewContent} </a>
+          <td>${review.reviewContent}</td>
+    	</tr>
+          </tbody>
+  </c:forEach>
+  </table>
+  
+  
+  
+ </div>
+ </section>
+ 
+ 
+ 
+ 
+ 
+ 
+
 
   
 </body>

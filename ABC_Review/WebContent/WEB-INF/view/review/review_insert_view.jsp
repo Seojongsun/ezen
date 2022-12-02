@@ -19,18 +19,11 @@
 
 </head>
 <body>
+<script type="text/javascript">
+alert("리뷰 작성 완료")
+location.href = "./index.jsp"
 
-
-
-<form action="./index.jsp" method="post"
-		enctype="multipart/form-data">
-		
-		
-		${alert{'반갑습니다' }
-		
-		<input type="file">
-		
-		</form>
+</script>
 
 </body>
 </html>

@@ -14,8 +14,10 @@ import org.apache.commons.logging.LogFactory;
 
 import review.control.Controller;
 import review.handler.HandlerAdapter;
+import review.review.controller.ReviewDeleteController;
 import review.review.controller.ReviewInsertController;
 import review.review.controller.ReviewSelectController;
+import review.review.controller.ReviewSelectDetailController;
 
 public class ReviewDispatcherServlet extends HttpServlet implements Servlet{
 
@@ -73,7 +75,10 @@ public class ReviewDispatcherServlet extends HttpServlet implements Servlet{
 				log.info("주문 / 배송현황 조회 화면 - " + handlerAdapter);
 				
 				
-			// =========== 리뷰 관련 ================	
+				
+				
+				
+			// =========== 리뷰 관련 ===============================
 				
 			}				 else if (pathURI.equals("/ReviewSelect.do")) {
 				controller = new ReviewSelectController( );
@@ -83,18 +88,19 @@ public class ReviewDispatcherServlet extends HttpServlet implements Servlet{
 				log.info(" 리뷰 전체 조회 페이지 - " + handlerAdapter);
 				
 			}				 else if (pathURI.equals("/ReviewSelectDetail.do")) {
-//				controller = new OrderShippingController( );
-//				handlerAdapter = controller.execute(request, response);
-				handlerAdapter = new HandlerAdapter();
-				handlerAdapter.setPath("./WEB-INF/view/review/review_select_detail.jsp");
+				controller = new ReviewSelectDetailController( );
+				handlerAdapter = controller.execute(request, response);
+//				handlerAdapter = new HandlerAdapter();
+//				handlerAdapter.setPath("./WEB-INF/view/review/review_select_detail.jsp");
 				log.info(" 리뷰 상세 조회 페이지 - " + handlerAdapter);
+				
 				
 		
 			
 			
 			
 			}				 else if (pathURI.equals("/ReviewInsert.do")) {
-//				controller = new OrderShippingController( );
+//				controller = new ReviewInsertController( );
 //				handlerAdapter = controller.execute(request, response);
 				handlerAdapter = new HandlerAdapter();
 				handlerAdapter.setPath("/WEB-INF/view/review/review_insert.jsp");
@@ -105,7 +111,14 @@ public class ReviewDispatcherServlet extends HttpServlet implements Servlet{
 				handlerAdapter = controller.execute(request, response);
 //				handlerAdapter = new HandlerAdapter();
 //				handlerAdapter.setPath("./WEB-INF/view/review/review_insert_view.jsp");
-				log.info(" 리뷰 작성 결과 페이지 - " + handlerAdapter);
+				log.info(" 리뷰 작성 전 값 넣어주기 - " + handlerAdapter);
+				
+			}				 else if (pathURI.equals("/ReviewInsertView2.do")) {
+//				controller = new ReviewInsertController( );
+//				handlerAdapter = controller.execute(request, response);
+				handlerAdapter = new HandlerAdapter();
+				handlerAdapter.setPath("./WEB-INF/view/review/review_insert_view.jsp");
+				log.info(" 리뷰 작성 결과 페이지2 - " + handlerAdapter);
 				
 		
 			
@@ -124,18 +137,15 @@ public class ReviewDispatcherServlet extends HttpServlet implements Servlet{
 				handlerAdapter.setPath("/WEB-INF/view/review/review_update_view.jsp");
 				log.info(" 리뷰 수정 결과 페이지 - " + handlerAdapter);
 				
+				
 			}				 else if (pathURI.equals("/ReviewDelete.do")) {
-//				controller = new OrderShippingController( );
-//				handlerAdapter = controller.execute(request, response);
 				handlerAdapter = new HandlerAdapter();
 				handlerAdapter.setPath("/WEB-INF/view/review/review_delete.jsp");
 				log.info(" 리뷰 삭제 페이지 - " + handlerAdapter);
 				
 			}				 else if (pathURI.equals("/ReviewDeleteView.do")) {
-//				controller = new OrderShippingController( );
-//				handlerAdapter = controller.execute(request, response);
-				handlerAdapter = new HandlerAdapter();
-				handlerAdapter.setPath("/WEB-INF/view/review/review_delete_view.jsp");
+				controller = new ReviewDeleteController( );
+				handlerAdapter = controller.execute(request, response);
 				log.info(" 리뷰 삭제 결과 페이지 - " + handlerAdapter);
 				
 			}
