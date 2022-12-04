@@ -5,7 +5,7 @@ public class ReviewDTO {
 	
 	private int reviewNumber;
 	private int orderNumber;
-	private String userId;
+	private String Id;
 	private String reviewDate;
 	private String rating;
 	private String sizeReview;
@@ -28,11 +28,11 @@ public class ReviewDTO {
 	public void setOrderNumber(int orderNumber) {
 		this.orderNumber = orderNumber;
 	}
-	public String getUserId() {
-		return userId;
+	public String getId() {
+		return Id;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUserId(String Id) {
+		this.Id = Id;
 	}
 	public String getReviewDate() {
 		return reviewDate;
@@ -86,7 +86,7 @@ public class ReviewDTO {
 	}
 	@Override
 	public String toString() {
-		return "ReviewDTO [reviewNumber=" + reviewNumber + ", orderNumber=" + orderNumber + ", userId=" + userId
+		return "ReviewDTO [reviewNumber=" + reviewNumber + ", orderNumber=" + orderNumber + ", Id=" + Id
 				+ ", reviewDate=" + reviewDate + ", rating=" + rating + ", sizeReview=" + sizeReview + ", colorReview="
 				+ colorReview + ", footballReview=" + footballReview + ", instepReview=" + instepReview
 				+ ", reviewContent=" + reviewContent + ", reviewFile=" + reviewFile + "]";

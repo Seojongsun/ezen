@@ -18,6 +18,7 @@
 
 </head>
 <body>
+<button type="button" onclick="location.href='./index.jsp'" class="btn btn-primary">홈</button>
 
 
 <form name="rating" id="raing" action="./ReviewInsertView.do" method="post"	enctype="multipart/form-data">

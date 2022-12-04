@@ -18,7 +18,7 @@
 </head>
 <body>
 
-<form action="./MemberInsert_view.me">
+<form action="./MemberInsert_view.me" method="post" enctype="application/x-www-form-urlencoded">
 
 회원 가입 화면
 <div>

@@ -22,6 +22,7 @@
 
 </head>
 <body>
+<button type="button" onclick="location.href='./index.jsp'" class="btn btn-primary">홈</button>
 
 ${reviewList}
  <strong>${listcount}</strong>개
@@ -48,9 +49,11 @@ ${reviewList}
   <c:forEach var="review" items="${reviewList}">
    <tbody>
            <tr class="text-center">
-            <td>${review.reviewNumber}</td>
-            <a href="./ReviewSelectDetail.do?reviewNumber=${review.reviewNumber}">${review.reviewContent} </a>
-          <td>${review.reviewContent}</td>
+           
+           
+            <td><a href="./ReviewSelectDetail.do?reviewNumber=${review.reviewNumber}">${review.reviewNumber} </a></td>
+          <td><a href="./ReviewSelectDetail.do?reviewNumber=${review.reviewNumber}">${review.reviewContent} </a></td>
+          
     	</tr>
           </tbody>
   </c:forEach>
@@ -60,8 +63,6 @@ ${reviewList}
   
  </div>
  </section>
- 
- 
  
  
  

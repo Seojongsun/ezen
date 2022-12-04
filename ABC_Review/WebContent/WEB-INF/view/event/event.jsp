@@ -6,17 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <title> 제목 </title>
-<link rel="stylesheet" type="text/css" href="../css/bootstrap.min_4.5.0.css">
-<script src="../js/jquery-3.5.1.min.js" type="text/javascript"></script>
-<script src="../js/bootstrap.min_4.5.0.js" type="text/javascript"></script>
-<script src="../js/jquery.validate.min.js" type="text/javascript"></script>
-<script src="../js/validity.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="./css/bootstrap.min_4.5.0.css">
+<script src="./js/jquery-3.5.1.min.js" type="text/javascript"></script>
+<script src="./js/bootstrap.min_4.5.0.js" type="text/javascript"></script>
+<script src="./js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="./js/validity.js" type="text/javascript"></script>
 <script type="text/javascript">
 
 </script>
 
 </head>
 <body>
+
+<button type="button" onclick="location.href='./index.jsp'" class="btn btn-primary">홈</button>
 
 기획전 화면
 

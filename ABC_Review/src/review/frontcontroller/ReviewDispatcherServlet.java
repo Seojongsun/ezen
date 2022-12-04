@@ -18,6 +18,8 @@ import review.review.controller.ReviewDeleteController;
 import review.review.controller.ReviewInsertController;
 import review.review.controller.ReviewSelectController;
 import review.review.controller.ReviewSelectDetailController;
+import review.review.controller.ReviewUpdateController;
+import review.review.controller.ReviewUpdateDetailController;
 
 public class ReviewDispatcherServlet extends HttpServlet implements Servlet{
 
@@ -124,18 +126,17 @@ public class ReviewDispatcherServlet extends HttpServlet implements Servlet{
 			
 			
 			}				 else if (pathURI.equals("/ReviewUpdate.do")) {
-//				controller = new OrderShippingController( );
-//				handlerAdapter = controller.execute(request, response);
-				handlerAdapter = new HandlerAdapter();
-				handlerAdapter.setPath("/WEB-INF/view/review/review_update.jsp");
+				controller = new ReviewUpdateController( );
+				handlerAdapter = controller.execute(request, response);
 				log.info(" 리뷰 수정 페이지 - " + handlerAdapter);
 				
-			}				 else if (pathURI.equals("/ReviewUpdateView.do")) {
-//				controller = new OrderShippingController( );
-//				handlerAdapter = controller.execute(request, response);
-				handlerAdapter = new HandlerAdapter();
-				handlerAdapter.setPath("/WEB-INF/view/review/review_update_view.jsp");
+			}				 else if (pathURI.equals("/ReviewUpdateDetail.do")) {
+				controller = new ReviewUpdateDetailController( );
+				handlerAdapter = controller.execute(request, response);
 				log.info(" 리뷰 수정 결과 페이지 - " + handlerAdapter);
+				
+				
+				
 				
 				
 			}				 else if (pathURI.equals("/ReviewDelete.do")) {

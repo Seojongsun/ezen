@@ -19,7 +19,12 @@
 </head>
 <body>
 
-리뷰 수정 결과 페이지
+<button type="button" onclick="location.href='./index.jsp'" class="btn btn-primary">홈</button>
+
+<script type="text/javascript">
+alert("수정할 권한이 없습니다.");	
+history.back( );
+</script>
 
 </body>
 </html>

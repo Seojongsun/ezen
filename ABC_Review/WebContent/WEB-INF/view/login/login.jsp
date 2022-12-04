@@ -23,6 +23,8 @@
 
 </head>
 <body>
+
+<button type="button" onclick="location.href='./index.jsp'" class="btn btn-primary">홈</button>
  
  <header id="main-header" class="py-2 bg-secondary text-white">
   <div class="col-md-6" align="left">

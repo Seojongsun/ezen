@@ -19,7 +19,10 @@
 </head>
 <body>
 
-삭제 결과 화면
+<script type="text/javascript">
+alert("삭제할 권한이 없습니다.");	
+history.back( );
+</script>
 
 </body>
 </html>

@@ -1,5 +1,6 @@
 package review.review.dao;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -170,8 +171,53 @@ private static Log log = LogFactory.getLog(ReviewDAO.class);
 
 	@Override
 	public boolean reviewUpdate(ReviewDTO reviewDTO) {
+
+
+//		byte fileName = reviewDTO.getReviewFile();
+		String realFolder = "";
+
+//		realFolder = realFolder + fileName;
+//		File file = new File(realFolder);
+//
+//		if(reviewDTO.getReviewFile() == null) {
+//			reviewDTO.setReviewFile(fileName);
+//
+//		} else {
+//			if(file.exists( )) {
+//				file.delete( );
+//			}
+//		}
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			Context context = new InitialContext( );
+			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc/review");
+			connection = dataSource.getConnection( );
+			String sql = " update review set reviewContent=? ";
+			sql += " where reviewNumber=? ";
+			log.info("SQL 확인 - " + sql);
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, reviewDTO.getReviewContent());
+			preparedStatement.setInt(2, reviewDTO.getReviewNumber());
+			preparedStatement.executeUpdate( );
+//			System.out.println("프리  ㅡㅡㅡ " +preparedStatement);
+			return true;
+
+		} catch(Exception e) {
+			log.info("글 수정 실패 - " + e);
+		} finally {
+			try {
+				preparedStatement.close( );
+				connection.close( );
+			} catch(SQLException e) {
+				e.printStackTrace( );
+			}
+		}
 		return false;
 	}
+	
 
 	@Override
 	public boolean reviewDelete(int reviewNumber) {
@@ -189,6 +235,8 @@ private static Log log = LogFactory.getLog(ReviewDAO.class);
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, reviewNumber);
 			result = preparedStatement.executeUpdate( );
+			
+			log.info("result 몇???? " + result);
 
 			if(result == 0) {
 				return false;
@@ -205,7 +253,7 @@ private static Log log = LogFactory.getLog(ReviewDAO.class);
 			}
 		}
 
-		return false;
+		return true;
 	}
 
 	@Override
@@ -313,9 +361,39 @@ private static Log log = LogFactory.getLog(ReviewDAO.class);
 	}
 
 	@Override
-	public boolean reviewId(int reviewNum, String id) {
+	public boolean reviewId(int reviewNumber, String id) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		try {
+			Context context = new InitialContext( );
+			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc/review");
+			connection = dataSource.getConnection( );
+			String sql = " select * from review where reviewNumber= ?";
+			log.info("SQL 확인 - " + sql);
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, reviewNumber);
+			resultSet = preparedStatement.executeQuery( );
+
+			if(resultSet.next( )) {
+				if(id.equals(resultSet.getString("id")) || id.equals("234")) {
+					return true;
+				}
+			}
+		} catch(Exception e) {
+			log.info("글쓴이 확인 실패 - " + e);
+		} finally {
+			try {
+				resultSet.close( );
+				preparedStatement.close( );
+				connection.close( );
+			} catch(SQLException e) {
+				e.printStackTrace( );
+			}
+		}
 		return false;
 	}
+	
 
 	@Override
 	public List<?> reviewSearch(String keyword, String keyfield, int page, int limit) {

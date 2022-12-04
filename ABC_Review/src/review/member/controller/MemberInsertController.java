@@ -47,7 +47,7 @@ public HandlerAdapter execute(HttpServletRequest request, HttpServletResponse re
 	memberDTO = memberDAO.memberInsert(memberDTO);
 	request.setAttribute("id", memberDTO.getId( ));
 	HandlerAdapter handlerAdapter = new HandlerAdapter( );
-	handlerAdapter.setPath("./view/member/member_insert_view.jsp");
+	handlerAdapter.setPath("WEB-INF/view/member/member_insert_view.jsp");
 	return handlerAdapter;
 }
 

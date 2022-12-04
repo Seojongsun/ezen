@@ -18,6 +18,8 @@
 </head>
 <body>
 
+<button type="button" onclick="location.href='./index.jsp'" class="btn btn-primary">홈</button>
+
 리뷰 상세 조회
 
 
@@ -34,8 +36,9 @@ ${reviewDTO.reviewContent}
 
 <button type="button" onclick="location.href='./ReviewSelect.do'" class="btn btn-primary">리뷰 전체 조회</button>
 
-<button type="button" onclick="location.href='./ReviewUpdate.do'" class="btn btn-warning">리뷰 수정</button>
-<button type="button" onclick="location.href='./ReviewDelete.do'" class="btn btn-light">리뷰 삭제</button>
+<button type="button" onclick="location.href='./ReviewUpdateDetail.do?reviewNumber=${reviewDTO.reviewNumber}'" class="btn btn-warning">리뷰 수정</button>
+
+<button type="button" onclick="location.href='./ReviewDelete.do?reviewNumber=${reviewDTO.reviewNumber}'" class="btn btn-light">리뷰 삭제</button>
  
  
    

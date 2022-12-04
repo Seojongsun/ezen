@@ -49,7 +49,7 @@ private static Log log = LogFactory.getLog(MemberDispatcherServlet.class);
 		
 	} else if (pathURI.equals("/LoginView.me")) {
 		handlerAdapter = new HandlerAdapter();
-		handlerAdapter.setPath("./WEB-INF/view/login/login.jsp");
+		handlerAdapter.setPath("/WEB-INF/view/login/login.jsp");
 		log.info("로그인 화면 뷰 확인 - " + handlerAdapter);
 		
 	} else if (pathURI.equals("/Login.me")) {
@@ -65,7 +65,7 @@ private static Log log = LogFactory.getLog(MemberDispatcherServlet.class);
 		
 	}else if(pathURI.equals("/MemberInsert.me")) {
 			handlerAdapter = new HandlerAdapter();
-			handlerAdapter.setPath("./WEB-INF/view/member/member_insert.jsp");
+			handlerAdapter.setPath("/WEB-INF/view/member/member_insert.jsp");
 			log.info("회원 가입 확인 - " + handlerAdapter);
 		
 	} else if(pathURI.equals("/MemberInsert_view.me")) {
@@ -75,17 +75,17 @@ private static Log log = LogFactory.getLog(MemberDispatcherServlet.class);
 		
 	} else if (pathURI.equals("/Cart.me")) {
 		handlerAdapter = new HandlerAdapter();
-		handlerAdapter.setPath("./WEB-INF/view/cart/cart.jsp");
+		handlerAdapter.setPath("/WEB-INF/view/cart/cart.jsp");
 		log.info("장바구니 페이지 화면 - " + handlerAdapter);
 		
 	} else if (pathURI.equals("/Event.me")) {
 		handlerAdapter = new HandlerAdapter();
-		handlerAdapter.setPath("./WEB-INF/view/event/event.jsp");
+		handlerAdapter.setPath("/WEB-INF/view/event/event.jsp");
 		log.info("이벤트 페이지 화면 - " + handlerAdapter);
 		
 	} else if (pathURI.equals("/ServiceCenter.me")) {
 		handlerAdapter = new HandlerAdapter();
-		handlerAdapter.setPath("./WEB-INF/view/service-center/service_center.jsp");
+		handlerAdapter.setPath("/WEB-INF/view/service-center/service_center.jsp");
 		log.info("고객센터 페이지 화면 - " + handlerAdapter);
 		
 	

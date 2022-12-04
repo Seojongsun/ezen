@@ -14,29 +14,26 @@
 <script src="./js/validity.js" type="text/javascript"></script>
 <script type="text/javascript">
 
+
 </script>
 
 </head>
 <body>
 
-삭제 화면
+<script type="text/javascript">
 
+var confirm = confirm ("작성하신 리뷰를 삭제함?")
+if (confirm == true) {
+	alert ( "작성하신 리뷰를 삭제했습니다.")
+	location.href= "./ReviewDeleteView.do?reviewNumber=${param.reviewNumber}&id=${sessionScope.id}"
+			
+} else if (confirm == false) {
+	
+	alert ( "리뷰 삭제를 취소하셨습니다.")
+	location.href="./ReviewSelect.do?reviewNumber=${param.reviewNumber}&id=${sessionScope.id}"
+}
 
-<c:choose>
- <c:when test="${sessionScope.id == 'admin'}">
-  <script type="text/javascript">
-  confirm("게시글을 삭제하시겠습니까?.")
-    location.href="./ReviewDeleteView.do?reviewNumber=${param.reviewNumber}&id=admin"
-  </script>
- </c:when>
- <c:otherwise>
-  <script type="text/javascript">
-  confirm("게시글을 삭제하시겠습니까?.")
-   location.href="./ReviewDeleteView.do?reviewNumber=${param.reviewNumber}&id=${sessionScope.id}"
-  </script>
- </c:otherwise>
-</c:choose>
-
+</script>
 
 
 </body>

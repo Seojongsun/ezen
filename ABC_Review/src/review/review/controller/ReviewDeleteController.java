@@ -19,29 +19,53 @@ private static Log log = LogFactory.getLog(ReviewDeleteController.class);
 	@Override
 	public HandlerAdapter execute(HttpServletRequest request, HttpServletResponse response) {
 		
+
+		
 		HandlerAdapter handlerAdapter = new HandlerAdapter( );
 
-		boolean result = false;
-		boolean usercheck = false;
+	
+			
+		
+			
+		
+		
+		
+		boolean result ;
+		boolean usercheck ;
+		
+
+			
 		String id = request.getParameter("id");
 		int reviewNumber = Integer.parseInt(request.getParameter("reviewNumber"));
 		ReviewDAO reviewDAO = new ReviewDAO( );
 
 		usercheck = reviewDAO.reviewId(reviewNumber, id);
+		
+		System.out.println("여기까지 옵니까 ? " + usercheck);
 
 		if(usercheck == false) {
-			handlerAdapter.setPath("/WEB-INF/view/review/review_delete.jsp");
+			handlerAdapter.setPath("/WEB-INF/view/review/review_delete_view.jsp");
 			return handlerAdapter;
 		}
+		
+		System.out.println("여기까지 옵니까 ?2 " + handlerAdapter);
+		
 		// 게시글 삭제를 처리한다.
 		result = reviewDAO.reviewDelete(reviewNumber);
+			
 		log.info("게시글 삭제 확인 - " + result);
 
 		// 리다이렉트로 파라미트를 전송한다.
 		handlerAdapter.setRedirect(true);
 		handlerAdapter.setPath("./ReviewSelect.do");
 		return handlerAdapter;
-
-	}
+		 
+	
 
 }
+	}
+	
+
+
+	
+

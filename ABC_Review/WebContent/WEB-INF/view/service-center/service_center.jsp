@@ -18,6 +18,8 @@
 </head>
 <body>
 
+<button type="button" onclick="location.href='./index.jsp'" class="btn btn-primary">홈</button>
+
 고객센터 화면
 
 </body>
