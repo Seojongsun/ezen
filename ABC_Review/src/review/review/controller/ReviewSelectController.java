@@ -24,7 +24,12 @@ public HandlerAdapter execute(HttpServletRequest request, HttpServletResponse re
 	List<?> reviewList = new ArrayList<Object>();
 	
 	int page = 1;
+	
+
+	
 	int limit = 10;
+	
+	
 	
 	if (request.getParameter("page" ) != null) {
 		page = Integer.parseInt(request.getParameter("page"));
@@ -33,13 +38,19 @@ public HandlerAdapter execute(HttpServletRequest request, HttpServletResponse re
 	int listcount = reviewDAO.reviewCount();
 	
 	reviewList = reviewDAO.reviewSelect(page, limit);
-	log.info("글 등록 확인 - " + reviewList);
+	log.info("글 조회 확인 - " + reviewList);
 	int maxpage = (int) ((double) listcount / limit + 0.95);
+	
+	System.out.println("5555555555555555555555555 " + maxpage);
 		
 	
 	int startpage = (((int) ((double) page / 10 + 0.9)) - 1) * 10 + 1;
 	
+	System.out.println("66666666666666666666666666 " + startpage);
+	
 	int endpage = startpage + 10 - 1;
+	
+	System.out.println("1111111111111111111177777777777777177333 " + endpage);
 	
 	if(endpage > maxpage) {
 		endpage = maxpage;

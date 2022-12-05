@@ -16,6 +16,8 @@ import review.control.Controller;
 import review.handler.HandlerAdapter;
 import review.review.controller.ReviewDeleteController;
 import review.review.controller.ReviewInsertController;
+import review.review.controller.ReviewSearchController;
+//import review.review.controller.ReviewSearchSelectController;
 import review.review.controller.ReviewSelectController;
 import review.review.controller.ReviewSelectDetailController;
 import review.review.controller.ReviewUpdateController;
@@ -149,7 +151,24 @@ public class ReviewDispatcherServlet extends HttpServlet implements Servlet{
 				handlerAdapter = controller.execute(request, response);
 				log.info(" 리뷰 삭제 결과 페이지 - " + handlerAdapter);
 				
+				
+				
+				
+				// ==================== 검색 관련 =================
+				
+			} else if(pathURI.equals("/ReviewSearch.do")) {
+				controller = new ReviewSearchController( );
+				handlerAdapter = controller.execute(request, response);
+				log.info("검색 확인 -" + handlerAdapter);
+			
+			
+//			} else if(pathURI.equals("/BoardSearchSelect.do")) {
+//				controller = new ReviewSearchSelectController( );
+//				handlerAdapter = controller.execute(request, response);
+//				log.info("검색 조회 확인 -" + handlerAdapter);
 			}
+			
+		
 				
 			
 			

@@ -34,7 +34,7 @@
    </div>  
   <div class="container"> 
    <div class="row">   
-    <div class="col-md-6" align="center"">
+    <div class="col-md-6" align="center">
      <h1><i class="fas fa-lock-open"></i>로그인</h1> 
     </div>
         

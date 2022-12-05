@@ -1,6 +1,5 @@
 package review.review.dao;
 
-import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,7 +30,11 @@ private static Log log = LogFactory.getLog(ReviewDAO.class);
 		
 		int startrow = (page - 1 ) + 10 + 1;
 		
+		System.out.println("1111111111111111111111133333333333 " + startrow);
+		
 		int endrow = startrow + limit - 1;
+		
+		System.out.println("11111111111111111111111334444444443 " + endrow);
 		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -42,14 +45,19 @@ private static Log log = LogFactory.getLog(ReviewDAO.class);
 			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc/review");
 			connection = dataSource.getConnection();
 			
-			String sql = " select * from review ";
+			String sql = "select * from (select rownum rnum, reviewNumber, reviewContent ";
+			sql += " from ( select * from review order by reviewNumber desc, reviewNumber asc))";
+			sql += " where rnum>=? and rnum<=?";
+			log.info("SQL확인 - " + sql);
 			
-			log.info("SQL 확인 - " + sql);
+			
 			
 			preparedStatement = connection.prepareStatement(sql);
-//			preparedStatement.setInt(1, startrow);
-//			preparedStatement.setInt(2, endrow);
+			preparedStatement.setInt(1, startrow);
+			preparedStatement.setInt(2, endrow);
 			resultSet = preparedStatement.executeQuery( );
+			
+			
 			
 			while(resultSet.next( )) {
 				ReviewDTO reviewDTO = new ReviewDTO( );
@@ -67,12 +75,16 @@ private static Log log = LogFactory.getLog(ReviewDAO.class);
 				list.add(reviewDTO);
 				
 				log.info("reviewDTO ---------- " + reviewDTO);
+				
+				System.out.println("listtttttttttttttttttt " + list);
 			
 			
 			
 			
 			}
 			return list;
+			
+		
 			
 		} catch (Exception e) {
 			log.info("리뷰 목록보기 실패 - " + e);
@@ -397,12 +409,109 @@ private static Log log = LogFactory.getLog(ReviewDAO.class);
 
 	@Override
 	public List<?> reviewSearch(String keyword, String keyfield, int page, int limit) {
+		
+		log.info("검색 단어 확인 - " + keyword);
+		log.info("검색 영역 확인 - " + keyfield);
+		String searchCall = "";
+		// 공백이 아닌 조건을 설정한다.
+		if(!"".equals(keyword)) {
+			// HTML의 태그 속성값으로 검색한다.
+			if("all".equals(keyfield)) {
+				searchCall = "(ReviewNumber like '%' || '" + keyword + "' || '%' ) or ( ReviewContent like '%' || '" + keyword
+				  + "' || '%')";
+			} else if("ReviewNumber".equals(keyfield)) {
+				searchCall = " ReviewNumber like '%' || '" + keyword + "' || '%'";
+			} else if("ReviewContent".equals(keyfield)) {
+				searchCall = " ReviewContent like '%' || '" + keyword + "' || '%'";
+			} 
+		}
+		List<ReviewDTO> list = new ArrayList<ReviewDTO>( );
+		int startrow = (page - 1) * 10 + 1;
+		int endrow = startrow + limit - 1;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		try {
+			Context context = new InitialContext( );
+			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc/review");
+			connection = dataSource.getConnection( );
+			String sql = "select * from (select rownum rnum, ReviewNumber,ReviewContent,";
+			sql += " from (select * from review order by reviewNumber desc, reviewContent asc) ";
+			sql += " where " + searchCall + ")";
+			sql += " where rnum>=? and rnum<=?";
+			log.info("SQL 확인 - " + sql);
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, startrow);
+			log.info("시작열 확인 - " + startrow);
+			preparedStatement.setInt(2, endrow);
+			log.info("마지막열 확인 - " + startrow);
+			resultSet = preparedStatement.executeQuery( );
+			while(resultSet.next( )) {
+				ReviewDTO reviewDTO = new ReviewDTO( );
+				reviewDTO.setReviewNumber(resultSet.getInt("reviewNumber"));
+				reviewDTO.setReviewContent(resultSet.getString("reviewContent"));
+				list.add(reviewDTO);
+			}
+			return list;
+		} catch(Exception e) {
+			log.info("검색 실패 - " + e);
+
+		} finally {
+			try {
+				resultSet.close( );
+				preparedStatement.close( );
+				connection.close( );
+			} catch(SQLException e2) {
+				e2.printStackTrace( );
+			}
+		}
 		return null;
 	}
 
 	@Override
 	public int reviewSearchCount(String keyword, String keyfield) {
-		return 0;
+		log.info("검색 단어 확인 - " + keyword);
+		log.info("검색 영역 확인 - " + keyfield);
+		String searchCall = "";
+		if(!"".equals(keyword)) {
+			if("all".equals(keyfield)) {
+				searchCall = "(reviewNumber like '%' || '" + keyword + "' || '%' ) or ( reviewContent like '%' || '" + keyword
+				  + "' || '%')";
+			} else if("reviewNumber".equals(keyfield)) {
+				searchCall = " reviewNumber like '%' || '" + keyword + "' || '%'";
+			} else if("reviewContent".equals(keyfield)) {
+				searchCall = " reviewContent like '%' || '" + keyword + "' || '%'";
+			}
+		}
+		log.info("검색 - " + searchCall);
+		int i = 0;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		try {
+			Context context = new InitialContext( );
+			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc/review");
+			connection = dataSource.getConnection( );
+			String sql = "select count(*) from review where" + searchCall;
+			log.info("SQL 확인 - " + sql);
+			log.info("검색 - " + searchCall);
+			preparedStatement = connection.prepareStatement(sql);
+			resultSet = preparedStatement.executeQuery( );
+			if(resultSet.next( )) {
+				i = resultSet.getInt(1);
+			}
+		} catch(Exception e) {
+			log.info("검색 실패 - " + e);
+		} finally {
+			try {
+				resultSet.close( );
+				preparedStatement.close( );
+				connection.close( );
+			} catch(SQLException e) {
+				e.printStackTrace( );
+			}
+		}
+		return i;
 	}
 
 	
